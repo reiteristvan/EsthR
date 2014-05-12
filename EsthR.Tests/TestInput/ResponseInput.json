@@ -1,0 +1,8 @@
+﻿{
+	"headers" : [ 
+		{"key" : "Content-Type", "value" : "text/json" },
+		{"key" : "Authorize", "value" : "Bearer tokentokentoken"}
+	],
+	"status_code" : "200",
+	"body" : "almabeka"
+}

@@ -1,0 +1,17 @@
+﻿{
+	"uri" : "https://almabeka.com",
+	"method" : "GET",
+	"headers" : [ 
+		{"key" : "Accept", "value" : "text/json" },
+		{"key" : "Authorize", "value" : "Bearer tokentokentoken"}
+	],
+	"url_parameters" : [
+		{"key" : "alma", "value" : "beka" },
+		{"key" : "beka", "value" : "alma" }
+	],
+	"form_values" : [
+		{"key" : "username", "value" : "user"},
+		{"key" : "password", "value" : "passwd"}
+	],
+	"body" : "almabekamalaccica"
+}

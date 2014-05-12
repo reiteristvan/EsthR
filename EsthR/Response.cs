@@ -7,6 +7,11 @@ namespace EsthR
 {
     public class Response
     {
+        public Response()
+        {
+            Headers = new List<KeyValuePair<string, string>>();
+        }
+
         [JsonProperty("headers")]
         public List<KeyValuePair<string, string>> Headers { get; set; }
 

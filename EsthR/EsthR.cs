@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net.Http;
 using EsthR.Utility;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace EsthR
 {
@@ -40,18 +36,23 @@ namespace EsthR
             using (var client = new HttpClient())
             {
                 var result = client.SendAsync(_lastRequest).Result;
-
-                //_lastResponse = new Response
-                //{
-                //    StatusCode = result.StatusCode.ToString(),
-                //    Body = result.Content.ReadAsStringAsync().Result,
-                //    Headers = new List<KeyValuePair<string, string>>(
-                //        result.Headers.Select(
-                //        header => new KeyValuePair<string, string>(header.Key, header.Value.Select(val => ))))
-                //};
+                _lastResponse = new Response();
+                _lastResponse.FillFromHttpResponse(result);
             }
 
+            Assert.IsTrue(CheckResponse(response, _lastResponse));
+
             return this;
+        }
+
+        private bool CheckResponse(Response expected, Response actual)
+        {
+            if (expected.StatusCode != actual.StatusCode)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private HttpRequestMessage BuildRequest(Request request)
@@ -65,7 +66,10 @@ namespace EsthR
                 requestMessage.Headers.Add(header.Key, header.Value);
             }
 
-            requestMessage.Content = BuildContent(request);
+            if (request.Method != "GET")
+            {
+                requestMessage.Content = BuildContent(request);
+            }
 
             return requestMessage;
         }
@@ -84,11 +88,13 @@ namespace EsthR
                 result += string.Format("{0}={1}&", urlParameter.Key, urlParameter.Value);
             }
 
-            return result.TrimEnd(new[] {'&'});
+            return string.Format("{0}{1}", request.Uri, result.TrimEnd(new[] {'&'}));
         }
 
         private HttpContent BuildContent(Request request)
         {
+            if (string.IsNullOrEmpty(request.Body)) {  return new StringContent(""); }
+
             return new StringContent(request.Body);
         }
 

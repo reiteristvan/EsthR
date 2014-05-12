@@ -7,6 +7,13 @@ namespace EsthR
 {
     public class Request
     {
+        public Request()
+        {
+            Headers = new List<KeyValuePair<string, string>>();
+            UrlParameters = new List<KeyValuePair<string, string>>();
+            FormValues = new List<KeyValuePair<string, string>>();
+        }
+
         [JsonProperty("uri")]
         public string Uri { get; set; }
 
@@ -44,24 +51,18 @@ namespace EsthR
 
         public Request WithHeader(string key, string value)
         {
-            if (Headers == null) {  Headers = new List<KeyValuePair<string, string>>(); }
-
             Headers.Add(new KeyValuePair<string, string>(key, value));
             return this;
         }
 
         public Request WithUrlParameter(string key, string value)
         {
-            if (UrlParameters == null) { UrlParameters = new List<KeyValuePair<string, string>>(); }
-
             UrlParameters.Add(new KeyValuePair<string, string>(key, value));
             return this;
         }
 
         public Request WithFormValue(string key, string value)
         {
-            if (FormValues == null) { FormValues = new List<KeyValuePair<string, string>>(); }
-
             FormValues.Add(new KeyValuePair<string, string>(key, value));
             return this;
         }

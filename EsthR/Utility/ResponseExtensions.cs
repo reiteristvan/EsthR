@@ -8,7 +8,7 @@ namespace EsthR.Utility
     {
         public static Response FillFromHttpResponse(this Response response, HttpResponseMessage httpResponse)
         {
-            response.StatusCode = ((int)httpResponse.StatusCode).ToString();
+            response.StatusCode = (uint)httpResponse.StatusCode;
             response.Body = httpResponse.Content.ReadAsStringAsync().Result;
 
             foreach (var header in httpResponse.Headers)

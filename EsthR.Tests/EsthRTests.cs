@@ -14,11 +14,11 @@ namespace EsthR.Tests
                     .WithMethod("GET")
                     .WithUrlParameter("site", "stackoverflow")
                     .WithUrlParameter("order", "desc"))
-                .Expect(new Response().WithStatusCode("200"));
+                .Expect(new Response().WithStatusCode(200));
         }
 
         [TestMethod]
-        public void TestCheckerFunction()
+        public void TestConditionFunction()
         {
             EsthR.Instance
             .Send(new Request()
@@ -27,8 +27,8 @@ namespace EsthR.Tests
                 .WithUrlParameter("site", "stackoverflow")
                 .WithUrlParameter("order", "desc"))
             .Expect(new Response()
-                .WithStatusCode("400")
-                .WithFunction(response => response.Body.Length > 0));
+                .WithStatusCode(400)
+                .WithCondition(response => response.Body.Length > 0));
         }
     }
 }

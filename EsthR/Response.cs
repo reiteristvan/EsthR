@@ -17,7 +17,7 @@ namespace EsthR
         public List<KeyValuePair<string, string>> Headers { get; set; }
 
         [JsonProperty("status_code")]
-        public string StatusCode { get; set; }
+        public uint StatusCode { get; set; }
 
         [JsonProperty("body")]
         public string Body { get; set; }
@@ -44,7 +44,7 @@ namespace EsthR
             return this;
         }
 
-        public Response WithStatusCode(string statusCode)
+        public Response WithStatusCode(uint statusCode)
         {
             StatusCode = statusCode;
             return this;
@@ -62,9 +62,9 @@ namespace EsthR
             return this;
         }
 
-        public Response WithFunction(Func<Response, bool> function)
+        public Response WithCondition(Func<Response, bool> condition)
         {
-            ResponseCheckerFunction = function;
+            ResponseCheckerFunction = condition;
             return this;
         }
     }

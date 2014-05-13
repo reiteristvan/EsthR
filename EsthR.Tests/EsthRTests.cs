@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace EsthR.Tests
 {
@@ -16,6 +15,20 @@ namespace EsthR.Tests
                     .WithUrlParameter("site", "stackoverflow")
                     .WithUrlParameter("order", "desc"))
                 .Expect(new Response().WithStatusCode("200"));
+        }
+
+        [TestMethod]
+        public void TestCheckerFunction()
+        {
+            EsthR.Instance
+            .Send(new Request()
+                .WithUri("https://api.stackexchange.com/2.2/tags")
+                .WithMethod("GET")
+                .WithUrlParameter("site", "stackoverflow")
+                .WithUrlParameter("order", "desc"))
+            .Expect(new Response()
+                .WithStatusCode("400")
+                .WithFunction(response => response.Body.Length > 0));
         }
     }
 }

@@ -36,23 +36,20 @@ namespace EsthR
             using (var client = new HttpClient())
             {
                 var result = client.SendAsync(_lastRequest).Result;
+
                 _lastResponse = new Response();
                 _lastResponse.FillFromHttpResponse(result);
             }
 
-            Assert.IsTrue(CheckResponse(response, _lastResponse));
+            CheckResponse(response, _lastResponse);
 
             return this;
         }
 
-        private bool CheckResponse(Response expected, Response actual)
+        private void CheckResponse(Response expected, Response actual)
         {
-            if (expected.StatusCode != actual.StatusCode)
-            {
-                return false;
-            }
-
-            return true;
+            Assert.AreEqual(expected.StatusCode, actual.StatusCode, "Status code");
+            Assert.IsTrue(expected.ResponseCheckerFunction(actual), "Custom checker function failed");
         }
 
         private HttpRequestMessage BuildRequest(Request request)
@@ -80,7 +77,7 @@ namespace EsthR
             {
                 return "";
             }
-
+ 
             string result = "?";
 
             foreach (var urlParameter in request.UrlParameters)

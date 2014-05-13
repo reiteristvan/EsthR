@@ -12,8 +12,8 @@ namespace EsthR.Tests
                 .Send(new Request()
                     .WithUri("https://api.stackexchange.com/2.2/tags")
                     .WithMethod("GET")
-                    .WithUrlParameter("site", "stackoverflow")
-                    .WithUrlParameter("order", "desc"))
+                    .WithUriParameter("site", "stackoverflow")
+                    .WithUriParameter("order", "desc"))
                 .Expect(new Response().WithStatusCode(200));
         }
 
@@ -24,8 +24,8 @@ namespace EsthR.Tests
             .Send(new Request()
                 .WithUri("https://api.stackexchange.com/2.2/tags")
                 .WithMethod("GET")
-                .WithUrlParameter("site", "stackoverflow")
-                .WithUrlParameter("order", "desc"))
+                .WithUriParameter("site", "stackoverflow")
+                .WithUriParameter("order", "desc"))
             .Expect(new Response()
                 .WithStatusCode(400)
                 .WithCondition(response => response.Body.Length > 0));

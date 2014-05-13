@@ -55,7 +55,7 @@ namespace EsthR
             return this;
         }
 
-        public Request WithUrlParameter(string key, string value)
+        public Request WithUriParameter(string key, string value)
         {
             UrlParameters.Add(new KeyValuePair<string, string>(key, value));
             return this;

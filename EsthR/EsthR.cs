@@ -1,7 +1,6 @@
 ﻿using System.Net.Http;
 using EsthR.Utility;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace EsthR
 {
@@ -47,8 +46,8 @@ namespace EsthR
 
         private void CheckResponse(Response expected, Response actual)
         {
-            Assert.AreEqual(expected.StatusCode, actual.StatusCode, "Status code");
-            Assert.IsTrue(expected.ResponseCheckerFunction == null || expected.ResponseCheckerFunction(actual), "Custom checker function failed");
+            Assert.AreEqual(expected.StatusCode, actual.StatusCode, "Status code mismatched");
+            Assert.IsTrue(expected.ResponseCheckerFunction == null || expected.ResponseCheckerFunction(actual), "Custom condition function failed");
         }
 
         private HttpRequestMessage BuildRequest(Request request)

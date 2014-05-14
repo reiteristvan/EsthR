@@ -32,7 +32,7 @@ namespace EsthR
             return this;
         }
 
-        public EsthR Expect(Response response)
+        public void Expect(Response response)
         {
             using (var client = new HttpClient())
             {
@@ -43,8 +43,6 @@ namespace EsthR
             }
 
             CheckResponse(response, _lastResponse);
-
-            return this;
         }
 
         private void CheckResponse(Response expected, Response actual)

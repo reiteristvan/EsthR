@@ -7,6 +7,11 @@ namespace EsthR.Utility
     {
         public static HttpMethod FromString(string method)
         {
+            if (string.IsNullOrEmpty(method))
+            {
+                throw new ArgumentException("HTTP method cannot be null or empty string!");
+            }
+
             HttpMethod result;
 
             switch (method.ToUpper())

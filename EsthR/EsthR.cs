@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using EsthR.Utility;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace EsthR
 {
@@ -90,7 +91,7 @@ namespace EsthR
 
         private HttpContent BuildContent(Request request)
         {
-            if (string.IsNullOrEmpty(request.Body)) {  return new StringContent(""); }
+            if (string.IsNullOrEmpty(request.Body)) {  return new StringContent(string.Empty); }
 
             return new StringContent(request.Body);
         }

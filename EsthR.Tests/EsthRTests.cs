@@ -27,7 +27,7 @@ namespace EsthR.Tests
                 .WithUriParameter("site", "stackoverflow")
                 .WithUriParameter("order", "desc"))
             .Expect(new Response()
-                .WithStatusCode(400)
+                .WithStatusCode(200)
                 .WithCondition(response => response.Body.Length > 0));
         }
     }

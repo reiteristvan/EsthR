@@ -8,12 +8,14 @@ In the following example we make a request to StackOverflow and expect a respons
 of 200 and a response body with length greater then zero.
 
 ```cs
-EsthR.Instance
-.Send(new Request()
-    .WithUri("https://api.stackexchange.com/2.2/tags")
-    .WithMethod("GET")
-    .WithUriParameter("site", "stackoverflow")
-    .WithUriParameter("order", "desc"))
-.Expect(new Response()
-    .WithStatusCode(200)
-    .WithCondition(response => response.Body.Length > 0));
+[TestMethod]
+public void TestRequest()
+{
+    EsthR.Instance
+        .Send(new Request()
+            .WithUri("https://api.stackexchange.com/2.2/tags")
+            .WithMethod("GET")
+            .WithUriParameter("site", "stackoverflow")
+            .WithUriParameter("order", "desc"))
+        .Expect(new Response().WithStatusCode(200));
+}

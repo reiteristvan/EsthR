@@ -19,3 +19,26 @@ public void TestRequest()
             .WithUriParameter("order", "desc"))
         .Expect(new Response().WithStatusCode(200));
 }
+```
+
+Alternatively you can use a json file to build a request or response:
+
+```json
+{
+	"uri" : "https://api.stackexchange.com/2.2/tags",
+	"method" : "GET",
+	"headers" : [ 
+		{"key" : "Accept", "value" : "text/json" },
+	],
+	"url_parameters" : [
+		{"key" : "site", "value" : "stackoverflow" },
+		{"key" : "order", "value" : "desc" }
+	]
+}
+```
+
+Then load this file:
+
+```cs
+var request = Request.FromConfig(@".\testInput\RequestInput.json");
+```

@@ -7,7 +7,7 @@ to configure the request and the expected response.
 In the following example we make a request to StackOverflow and expect a response with the HTTP statuscode
 of 200 and a response body with length greater then zero.
 
-'''cs
+```cs
 EsthR.Instance
 .Send(new Request()
     .WithUri("https://api.stackexchange.com/2.2/tags")

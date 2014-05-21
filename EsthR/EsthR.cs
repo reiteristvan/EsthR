@@ -73,7 +73,7 @@ namespace EsthR
         {
             if (request.UrlParameters == null || request.UrlParameters.Count == 0)
             {
-                return "";
+                return string.Empty;
             }
  
             string result = "?";

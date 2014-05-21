@@ -50,7 +50,8 @@
     <Compile Include="Request.cs" />
     <Compile Include="Response.cs" />
     <Compile Include="Utility\HttpMethodExtensions.cs" />
-    <Compile Include="Utility\ResponseExtensions.cs" />
+    <Compile Include="RequestExtensions.cs" />
+    <Compile Include="ResponseExtensions.cs" />
     <Compile Include="Utility\Serializer.cs" />
   </ItemGroup>
   <ItemGroup>

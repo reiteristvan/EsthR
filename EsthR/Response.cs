@@ -14,58 +14,23 @@ namespace EsthR
         }
 
         [JsonProperty("headers")]
-        public List<KeyValuePair<string, string>> Headers { get; set; }
+        public List<KeyValuePair<string, string>> Headers { get; internal set; }
 
         [JsonProperty("status_code")]
-        public uint StatusCode { get; set; }
+        public uint StatusCode { get; internal set; }
 
         [JsonProperty("body")]
-        public string Body { get; set; }
+        public string Body { get; internal set; }
 
         [JsonIgnore]
-        public Type ResponseType { get; set; }
+        public Type ResponseType { get; internal set; }
 
         [JsonIgnore]
-        public Func<Response, bool> ResponseCheckerFunction { get; private set; }  
+        public Func<Response, bool> ResponseCheckerFunction { get; internal set; }  
 
         public static Response FromConfig(string path)
         {
             return Serializer.Deserialize<Response>(File.ReadAllText(path));
-        }
-
-        public Response WithHeader(string key, string value)
-        {
-            if (Headers == null)
-            {
-                Headers = new List<KeyValuePair<string, string>>();
-            }
-
-            Headers.Add(new KeyValuePair<string, string>(key, value));
-            return this;
-        }
-
-        public Response WithStatusCode(uint statusCode)
-        {
-            StatusCode = statusCode;
-            return this;
-        }
-
-        public Response WithBody(string body)
-        {
-            Body = body;
-            return this;
-        }
-
-        public Response WithType(Type responseType)
-        {
-            ResponseType = responseType;
-            return this;
-        }
-
-        public Response WithCondition(Func<Response, bool> condition)
-        {
-            ResponseCheckerFunction = condition;
-            return this;
         }
     }
 }

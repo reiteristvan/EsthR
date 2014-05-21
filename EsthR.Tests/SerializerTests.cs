@@ -11,7 +11,7 @@ namespace EsthR.Tests
             var request = Request.FromConfig(@".\testInput\RequestInput.json");
 
             Assert.IsNotNull(request);
-            Assert.IsTrue(request.FormValues.Count == 2);
+            Assert.IsTrue(request.UrlParameters.Count == 2);
             Assert.IsTrue(request.Headers[0].Key == "Accept");
         }
     }

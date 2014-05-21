@@ -42,3 +42,20 @@ Then load this file:
 ```cs
 var request = Request.FromConfig(@".\testInput\RequestInput.json");
 ```
+
+You can use a custom condition on responses. Below we test if a response's body length greater then zero:
+
+```cs
+[TestMethod]
+public void TestConditionFunction()
+{
+    EsthR.Instance
+    .Send(new Request()
+        .WithUri("https://api.stackexchange.com/2.2/tags")
+        .WithMethod("GET")
+        .WithUriParameter("site", "stackoverflow")
+        .WithUriParameter("order", "desc"))
+    .Expect(new Response()
+        .WithCondition(response => response.Body.Length > 0));
+}
+```
